@@ -1,0 +1,19 @@
+
+
+body{
+	width: 100%;
+	background-color: black;
+	overflow-x: hidden; 
+}
+
+#container{
+	width: 90%;
+	margin: auto;
+}
+
+#myCanvas{
+	width: 80%;
+    height: 100%; 
+	border:1px solid gray;
+	background-color: #ccc;
+}
