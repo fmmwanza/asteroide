@@ -2,26 +2,26 @@
 (function(root){
 
 	var Zombie = root.Zombie = root.Zombie || {};
-	var z = null;
-	var angle = 0;
-	var canvasX = 150;
-	var canvasY = 80;
-	var cache = this;
-	var id = document.getElementById("myCanvas");
-	var ctx = id.getContext("2d");
 
-
-	Zombie.Gun = function(){
-	} ;
+	Zombie.Gun = function() {
+		this.cached();
+		this.draw();
+	};
 
 	Zombie.Gun.prototype = {
-		init : function(){
 
+		cached: function() {
+			this.angle = 0;
+			this.canvasX = 150;
+			this.canvasY = 80;
+			this.canvas = document.getElementById("myCanvas");
+			this.ctx = this.canvas.getContext("2d");
 		},
+
 		draw : function(){
-			ctx.save();
-			ctx.fillStyle = "red";
-			ctx.fillRect(canvasX , canvasY, 5, 10);
+			this.ctx.save();
+			this.ctx.fillStyle = "black";
+			this.ctx.fillRect(this.canvasX, this.canvasY, 5, 10);
 
 		},
 		novo : function(){
@@ -33,48 +33,44 @@
 		load : function(){
 
 		},
-		rotate: function(){
-			angle = angle % 360;
-		    ctx.clearRect(0, 0, id.width, id.height);
-
-		    ctx.save();
-		    ctx.fillStyle = "#FF0000";
-
-		    ctx.translate(canvasX,canvasY);
-		    	debugger;
-		    ctx.rotate(angle*Math.PI/180 );  // rotate 90 degrees
-		    ctx.translate(-canvasX,-canvasY);
-		    console.log(ctx + ' -- ' + ctx);
-		    Zombie.Gun.prototype.draw();
-            ctx.restore();
-
-           // requestAnimationFrame(function() {
-			//Zombie.Gun.prototype.keyboardControl();
-			//});
-
+		rotate: function(angleRotate){
+			//console.log(this.angle);
+			var angle = angleRotate % 360;
+		    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+		    this.ctx.save();
+		    this.ctx.fillStyle = "#FF0000";
+		    this.ctx.translate(this.canvasX,this.canvasY);
+		    this.ctx.rotate(angle*Math.PI/180 );  // rotate 90 degrees
+		    this.ctx.translate(-this.canvasX,-this.canvasY);
+		   // console.log(ctx + ' -- ' + ctx);
+		    this.draw();
+            this.ctx.restore();
 		 },
-		 keyboardControl : function(event){
-
-			switch(event.keyCode){
+		 keyboardControl : function(e){
+		 	
+		 	var angle =0;
+			switch(e.keyCode){
 
 			case 38 : angle = 4; 				// Up
-			Zombie.Gun.prototype.rotate();
+			gameLoop.rotate(angle);
 			break;
 
 			case 40 : angle = -4;				// down
-			Zombie.Gun.prototype.rotate();
+			gameLoop.rotate(angle);
 			break;
 
-			case 32 : angle = angle;
+			case 32 : angle = angle;	// fire !!!
 			break;
 
 			}
+		},
+		events : function(){
+			document.addEventListener('keydown', this.keyboardControl, false);
 		}
 	};
 
-	z = Zombie.Gun.prototype;
-	z.draw();
-	z.rotate();
+	var gameLoop = new Zombie.Gun();
+	gameLoop.events();
 
 })(window);
 

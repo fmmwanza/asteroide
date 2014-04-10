@@ -3,33 +3,19 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <title>ZOMBIE LAND</title>
-
-  <link rel="shortcut icon" type="image/png" href="lib/jasmine-2.0.0/jasmine_favicon.png">
   <link rel="stylesheet" type="text/css" href="myStyle.css">
-
-  <script type="text/javascript" src="lib/jasmine-2.0.0/jasmine.js"></script>
-  <script type="text/javascript" src="lib/jasmine-2.0.0/jasmine-html.js"></script>
-  <script type="text/javascript" src="lib/jasmine-2.0.0/boot.js"></script>
-
-  <!-- include spec files here... -->
-  <script type="text/javascript" src="spec/SpecHelper.js"></script>
-  <script type="text/javascript" src="spec/PlayerSpec.js"></script>
-  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-  <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-
-
-
 </head>
-
-<body onkeydown="Zombie.Gun.prototype.keyboardControl(event);">
+<body>
 
   <div id="container" >
-    <canvas id="myCanvas"  >
+    <canvas id="myCanvas" >
     Your browser does not support the HTML5 canvas tag.
    </canvas>
+   <div id="score">
+     <span id="balas"></span>
 
+   </div>
   </div>
-
    <script type="text/javascript" src="gun.js"></script>
    <script type="text/javascript" src="bullet.js"></script>
    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
